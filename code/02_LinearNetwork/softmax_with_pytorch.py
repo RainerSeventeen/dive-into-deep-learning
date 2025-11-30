@@ -20,7 +20,7 @@ if __name__ == "__main__":
     
     net = nn.Sequential(
         nn.Flatten(),   # 在线性层前展开
-        nn.Linear(28 * 28, 10)
+        nn.Linear(28 * 28, 10)  # pytorch 会自动在内部执行 softmax 的计算
     )
     net.apply(init_weight) # 递归按层执行这个函数，函数输入固定为 module，返回 None
     loss = nn.CrossEntropyLoss(reduction='none') # 这里不执行平均值，因为在 train_ch3返回的时候会自动求平均
