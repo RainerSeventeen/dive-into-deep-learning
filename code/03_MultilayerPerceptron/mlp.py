@@ -1,5 +1,5 @@
 """
-从零开始实现多层感知机
+多层感知机实现逻辑 from scratch & concise
 """
 
 import torch
@@ -47,12 +47,11 @@ if __name__ == "__main__":
             nn.Linear(num_hidden, num_output),
         )
         params = net.parameters()
-    
     # 下面的训练方式和 softmax 完全相同
     num_epoch = 10
     lr = 0.1
     updator = torch.optim.SGD(params, lr=lr)
-    loss = nn.CrossEntropyLoss(reduction='none')
+    loss = nn.CrossEntropyLoss(reduction='none')    # 自动包含了 softmax 功能
     train_ch3(net, train_iter, test_iter, loss, num_epoch, updator)
     d2l.plt.show()
 
