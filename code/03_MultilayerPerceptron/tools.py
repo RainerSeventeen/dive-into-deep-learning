@@ -31,6 +31,16 @@ def evaluate_accuracy(net, data_iter):
         metric.add(accuracy(net(X), y), y.numel())  # y.numel() 返回 tensor 元素数量
     return metric[0] / metric[1]
 
+def evaluate_loss(net, data_iter, loss):
+    """ d2l 内部有这个函数, 用于累加所有的 loss"""
+    metric = d2l.Accumulator(2)  # 损失的总和,样本数量
+    for X, y in data_iter:
+        out = net(X)
+        y = y.reshape(out.shape)
+        l = loss(out, y)
+        metric.add(l.sum(), l.numel()) # sum 张量求和, numel 元素个数总和
+    return metric[0] / metric[1]
+
 def train_epoch_ch3(net, train_iter, loss, updater):  #@save
     """训练模型一个迭代周期（定义见第3章）"""
     # 将模型设置为训练模式
