@@ -9,6 +9,9 @@ doc/
 # dataset
 **/dataset
 
+# output files
+**/output
+
 # log
 **/log
 **/tb_log
