@@ -1,3 +1,6 @@
+"""
+AlexNet, 更推荐用连服务器来跑代码
+"""
 import torch
 from torch import nn
 from d2l import torch as d2l
@@ -34,3 +37,4 @@ if __name__ == "__main__":
 
     lr, num_epochs = 0.01, 10
     d2l.train_ch6(net, train_iter, test_iter, num_epochs, lr, d2l.try_gpu())
+    d2l.plt.show()
